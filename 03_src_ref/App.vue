@@ -1,8 +1,8 @@
 <template>
-  <h1>姓名：{{name}}</h1>
-  <h2>年龄：{{age}}</h2>
-  <h2>工作：{{job.type}}</h2>
-  <h2>薪水：{{job.salary}}K</h2>
+  <h1>姓名：{{ name }}</h1>
+  <h2>年龄：{{ age }}</h2>
+  <h2>工作：{{ job.type }}</h2>
+  <h2>薪水：{{ job.salary }}K</h2>
   <button @click="changeInfo">修改信息</button>
 </template>
 
@@ -15,15 +15,15 @@ export default {
     let age = ref(20)
     let job = ref({
       type: '前端',
-      salary: 30
+      salary: 30,
     })
 
     function changeInfo() {
-      // name = '李四'
-      // age = 30
-      // job.type = 'UI 设计师'
-      // job.salary = 60
-      console.log(name, age);
+      // name.value = '李四'
+      // age.value = 30
+      // job.value.type = 'UI 设计师'
+      // job.value.salary = 60
+      console.log(name, age)
     }
 
     // 返回一个对象
@@ -31,8 +31,8 @@ export default {
       name,
       age,
       job,
-      changeInfo
+      changeInfo,
     }
-  }
+  },
 }
 </script>
