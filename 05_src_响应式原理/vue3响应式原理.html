@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue3响应式原理</title>
+  </head>
+  <body>
+    <script>
+      // 源数据
+      let person = {
+        name: '张三',
+        age: 20,
+      }
+
+      // Proxy 代理对象
+      const p = new Proxy(person, {
+        // 读取属性时调用
+        get(target, propName) {
+          console.log(target, propName)
+          console.log(`读取了 p 上的${propName}属性`)
+
+          return Reflect.get(target, propName) // Reflect 反射对象
+        },
+        // 修改属性或增加属性时调用
+        set(target, propName, value) {
+          console.log(`修改了 p 上的${propName}属性，去更新界面`)
+          Reflect.set(target, propName, value)
+        },
+        // 删除属性时调用
+        deleteProperty(target, propName) {
+          console.log(`删除了 p 上的${propName}属性，去更新界面`)
+          return Reflect.deleteProperty(target, propName)
+        },
+      })
+      console.log('person = ', person)
+      console.log('p = ', p)
+    </script>
+  </body>
+</html>
